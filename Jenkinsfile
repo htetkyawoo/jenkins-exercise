@@ -1,12 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Build Maven') {
+        stage('Build') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/htetkyawoo/jenkins-exercise.git']])
-                withMaven {
-                    sh 'mvn clean install'
-                }
+                sh 'mvn -B -DskipTests clean package'
             }
         }
     }
