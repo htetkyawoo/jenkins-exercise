@@ -1,9 +1,7 @@
 pipeline {
-    node {
-        docker.withServer('tcp://172.18.0.3:2375', '') {
-            docker.image('maven').withRun('-v C:/Users/USER/.m2:/root/.m2') {
-            }
-        }
+    agent any
+    tools {
+        maven '3.9.7'
     }
     stages {
         stage('Build') {
