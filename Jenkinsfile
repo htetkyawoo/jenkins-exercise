@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker {
+        docker.withServer('tcp://172.18.0.3:2375', '') {
             image 'maven'
             args '-v C:/Users/USER/.m2:/root/.m2'
         }
