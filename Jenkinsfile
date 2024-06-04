@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'alpine'
+    }
     tools {
         maven '3.9.7'
     }
