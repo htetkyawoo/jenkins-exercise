@@ -15,10 +15,10 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
+        }
+        stage('Create Docker Image') {
+            steps {
+                sh 'docker build -t jenkins-exercise:0.0.1 .'
             }
         }
     }
