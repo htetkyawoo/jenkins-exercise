@@ -21,9 +21,7 @@ pipeline {
         stage('Create Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('${ DOCKER_HOST }') {
-                        docker.build('jenkins-exercise:0.0.1')
-                    }
+                    docker.build('jenkins-exercise:0.0.1')
                 }
             }
         }
