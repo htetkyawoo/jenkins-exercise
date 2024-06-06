@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'alpine'
+        label 'jenkins_alpine_agent'
     }
     tools {
         dockerTool 'docker'
