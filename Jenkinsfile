@@ -3,7 +3,9 @@ pipeline {
         label 'alpine'
     }
     tools {
+        dockerTool 'docker'
         maven '3.9.7'
+        git 'Default'
     }
     stages {
         stage('Build') {
@@ -21,9 +23,9 @@ pipeline {
                 script {
                     docker.withRegistry('${ DOCKER_HOST }') {
                         docker.build('jenkins-exercise:0.0.1')
+                    }
                 }
             }
         }
     }
-}
 }
