@@ -20,9 +20,7 @@ pipeline {
         }
         stage('Create Docker Image') {
             steps {
-                script {
-                    docker.build('jenkins-exercise:0.0.1')
-                }
+                sh 'docker build -t jenkins-exercise:0.0.1 .'
             }
         }
     }
