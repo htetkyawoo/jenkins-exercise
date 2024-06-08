@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        imageName = 'jenkins-exercise:0.0.1'
+    }
     agent {
         label 'jenkins_alpine_agent'
     }
@@ -18,11 +21,31 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage('Stop and Remove Running Container ') {
+            steps {
+                script {
+                    def RunningID = sh(
+                            script: 'docker container ls -qf ancestor=\${imageName}',
+                            returnStdout: true
+                    )
+                    echo "Running Containers : ${RunningID}"
+                    if ("${RunningID}" != '') {
+                        echo "Stopping ${RunningID} ..."
+                        sh "docker stop ${RunningID}"
+                        echo "Stopped ${RunningID}"
+
+                        echo "Removing ${RunningID} ..."
+                        sh "docker container rm ${RunningID}"
+                        echo "Removed ${RunningID}"
+                    }else {
+                        echo 'No Container is Running'
+                    }
+                }
+            }
+        }
         stage('Checking Image and Delete') {
             steps {
                 script {
-                    def imageName = 'jenkins-exercise:0.0.1'
-                    env.imageName = "${imageName}"
                     def oldImageID = sh(
                                             script: 'docker images -qf reference=\${imageName}',
                                             returnStdout: true
