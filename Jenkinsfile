@@ -23,7 +23,7 @@ pipeline {
                 script {
                     def imageName = 'jenkins-exercise:0.0.1'
                     def oldImageID = sh(
-                                            script: 'docker images -qf reference=\${imageName}',
+                                            script: 'docker images -q ${imageName}',
                                             returnStdout: true
                                         )
 
