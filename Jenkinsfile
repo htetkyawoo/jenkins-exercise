@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'jenkins_alpine_agent'
-    }
+    agent none
     tools {
         dockerTool 'docker'
         maven '3.9.7'
