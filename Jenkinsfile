@@ -45,7 +45,7 @@ pipeline {
                     if ("${CreatedID}" != '') {
                         echo "Removing ${CreatedID} ..."
                         sh "docker rm ${CreatedID}"
-                        echo "Removed ${CreatedId}"
+                        echo "Removed ${CreatedID}"
                     }else {
                         echo 'No Container to remove'
                     }
