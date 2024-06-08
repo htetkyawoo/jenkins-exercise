@@ -29,7 +29,9 @@ pipeline {
             }
         }
         stage('Run Container') {
-            sh 'docker run jenkins-exercise:0.0.1'
+            steps {
+                sh 'docker run jenkins-exercise:0.0.1'
+            }
         }
     }
 }
