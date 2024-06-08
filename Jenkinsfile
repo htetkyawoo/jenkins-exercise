@@ -18,7 +18,8 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        steps {
+        stage('Checking Image and Delete') {
+            steps {
                 script {
                     def imageName = 'jenkins-exercise:0.0.1'
                     def oldImageID = sh(
@@ -31,11 +32,12 @@ pipeline {
 
                     if ("${oldImageID}" != '') {
                         echo "Deleting image id: ${oldImageID}..."
-                    sh "docker rmi -f ${oldImageID}"
+                        sh "docker rmi -f ${oldImageID}"
                     } else {
                         echo 'No image to delete...'
                     }
                 }
+            }
         }
         stage('Create Docker Image') {
             steps {
