@@ -25,9 +25,10 @@ pipeline {
             steps {
                 script {
                     def RunningID = sh(
-                            script: 'docker container ls -aqf ancestor=\${imageName}',
+                            script: 'docker container ls -aq -f status=running -f ancestor=\${imageName}',
                             returnStdout: true
                     )
+                    RunningID = RunningID.replace('//R', ' ')
                     echo "Running Containers : ${RunningID}"
                     if ("${RunningID}" != '') {
                         echo "Stopping ${RunningID} ..."
