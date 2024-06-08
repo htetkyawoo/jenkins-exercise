@@ -31,11 +31,11 @@ pipeline {
                     echo "Running Containers : ${RunningID}"
                     if ("${RunningID}" != '') {
                         echo "Stopping ${RunningID} ..."
-                        sh "docker stop ${RunningID}"
+                        sh "docker stop $(docker container ls -aqf ancestor=\${imageName})"
                         echo "Stopped ${RunningID}"
 
                         echo "Removing ${RunningID} ..."
-                        sh "docker container rm ${RunningID}"
+                        sh "docker rm $(docker container ls -aqf ancestor=\${imageName})"
                         echo "Removed ${RunningID}"
                     }else {
                         echo 'No Container is Running'
