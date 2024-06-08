@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Check image And Delete') {
             steps {
-                sh 'if[ -z "$(docker image -q jenkins-exercise:0.0.1)" > $null]; docker image rm jenkins-exercise:0.0.1'
+                sh 'if[ -z "$(docker images -q jenkins-exercise:0.0.1)" > $null]; docker image rm jenkins-exercise:0.0.1'
             }
         }
         stage('Create Docker Image') {
