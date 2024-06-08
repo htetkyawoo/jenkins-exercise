@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     def RunningID = sh(
-                            script: 'docker container ls -qf ancestor=\${imageName}',
+                            script: 'docker container ls -aqf ancestor=\${imageName}',
                             returnStdout: true
                     )
                     echo "Running Containers : ${RunningID}"
