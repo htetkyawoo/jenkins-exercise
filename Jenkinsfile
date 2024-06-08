@@ -31,7 +31,7 @@ pipeline {
                     echo "Running Containers : ${RunningID}"
                     if ("${RunningID}" != '') {
                         echo "Stopping ${RunningID} ..."
-                        sh 'docker stop $(docker container ls -aqf ancestor=\${imageName})'
+                        sh 'docker stop $(docker container ls -aq -f status=running -f ancestor=\${imageName})'
                         echo "Stopped ${RunningID}"
 
                         echo "Removing ${RunningID} ..."
