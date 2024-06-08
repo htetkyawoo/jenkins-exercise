@@ -46,7 +46,7 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                sh 'docker run jenkins-exercise:0.0.1'
+                sh 'docker run -d -p 8080:8080 jenkins-exercise:0.0.1'
             }
         }
     }
