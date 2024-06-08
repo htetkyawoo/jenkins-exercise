@@ -46,6 +46,8 @@ pipeline {
                         echo "Removing ${CreatedID} ..."
                         sh "docker rm ${CreatedID}"
                         echo "Removed ${CreatedId}"
+                    }else {
+                        echo 'No Container to remove'
                     }
                 }
             }
