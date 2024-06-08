@@ -32,7 +32,7 @@ pipeline {
                     echo "Running Containers : ${RunningID}"
                     if ("${RunningID}" != '') {
                         echo "Stopping ${RunningID} ..."
-                        sh 'docker stop \${RunningID}'
+                        sh "docker stop ${RunningID}"
                         echo "Stopped ${RunningID}"
                     }else {
                         echo 'No Container is Running'
@@ -44,7 +44,7 @@ pipeline {
                     CreatedID = CreatedID.replaceAll('(\\t|\\r?\\n)+', ' ')
                     if ("${CreatedID}" != '') {
                         echo "Removing ${CreatedID} ..."
-                        sh 'docker rm \${CreatedID}'
+                        sh "docker rm ${CreatedID}"
                         echo "Removed ${CreatedId}"
                     }
                 }
