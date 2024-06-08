@@ -32,14 +32,20 @@ pipeline {
                     echo "Running Containers : ${RunningID}"
                     if ("${RunningID}" != '') {
                         echo "Stopping ${RunningID} ..."
-                        sh 'docker stop $(docker container ls -aq -f status=running -f ancestor=\${imageName})'
+                        sh 'docker stop \${RunningID}'
                         echo "Stopped ${RunningID}"
-
-                        echo "Removing ${RunningID} ..."
-                        sh 'docker rm $(docker container ls -aqf ancestor=\${imageName})'
-                        echo "Removed ${RunningID}"
                     }else {
                         echo 'No Container is Running'
+                    }
+                    def CreatedID = sh(
+                        script: 'docker container ls -aqf ancestor=\${imageName}',
+                        returnStdout: true
+                    )
+                    CreatedID = CreatedID.replaceAll('(\\t|\\r?\\n)+', ' ')
+                    if ("${CreatedID}" != '') {
+                        echo "Removing ${CreatedID} ..."
+                        sh 'docker rm \${CreatedID}'
+                        echo "Removed ${CreatedId}"
                     }
                 }
             }
