@@ -28,7 +28,7 @@ pipeline {
                             script: 'docker container ls -aq -f status=running -f ancestor=\${imageName}',
                             returnStdout: true
                     )
-                    RunningID = RunningID.replace('//R', ' ')
+                    RunningID = RunningID.replace('\\n', ' ')
                     echo "Running Containers : ${RunningID}"
                     if ("${RunningID}" != '') {
                         echo "Stopping ${RunningID} ..."
